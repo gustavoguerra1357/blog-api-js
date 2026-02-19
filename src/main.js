@@ -1,24 +1,38 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const articleContainer = document.querySelector("#articles-container")
 
-setupCounter(document.querySelector('#counter'))
+async function buscaPosts() {  
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+  if(!response.ok) {
+    throw new Error("Erro ao obter resposta da API.")
+  }
+  const posts = await response.json();
+  return posts
+}
+
+function renderizarPosts(posts) {
+  articleContainer.innerHTML = "";
+  posts.forEach((post) => {
+    const div = document.createElement("div")
+    div.innerHTML = `
+    <h2 class='post-title'>${post.title}</h2>
+    <p class='post-class'>${post.body}</p>`
+    div.classList.add("article")
+    articleContainer.appendChild(div)
+  })
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const posts = await buscaPosts();
+    renderizarPosts(posts.slice(0, 10));
+  }
+  catch(err) {
+    console.log(err);
+    articleContainer.innerHTML = "Erro ao carregar POSTS."
+  }
+})
+
+
+
