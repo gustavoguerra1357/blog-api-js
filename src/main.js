@@ -14,11 +14,10 @@ async function buscaPosts() {
 function renderizarPosts(posts) {
   articleContainer.innerHTML = "";
   posts.forEach((post) => {
-    const div = document.createElement("div")
+    const div = document.createElement("article")
     div.innerHTML = `
     <h2 class='post-title'>${post.title}</h2>
     <p class='post-class'>${post.body}</p>`
-    div.classList.add("article")
     articleContainer.appendChild(div)
   })
 }
@@ -26,7 +25,7 @@ function renderizarPosts(posts) {
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const posts = await buscaPosts();
-    renderizarPosts(posts.slice(0, 10));
+    renderizarPosts(posts.slice(0, 15));
   }
   catch(err) {
     console.log(err);

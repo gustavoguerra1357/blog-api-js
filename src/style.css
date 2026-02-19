@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 #app {
@@ -90,5 +91,21 @@ button:active {
 /*Article section*/
 #article-section {
   width: 100%;
-  border: 1px solid red;
+}
+#articles-container {
+  box-sizing: border-box;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: scroll;
+}
+#articles-container article {
+  box-sizing: border-box;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  border-bottom: 4px solid var(--main-color);
+}
+.post-title {
+  color: var(--main-color);
+  margin-bottom: 10px;
 }
