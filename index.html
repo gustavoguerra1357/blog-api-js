@@ -12,12 +12,12 @@
   <div id="app">
     <header>
       <h1>Nova Postagem</h1>
-      <form>
+      <form id="form-post">
         <label for="title">Título</label>
-        <input type="text" id="title" placeholder="Digite o título da postagem...">
+        <input required type="text" id="title" placeholder="Digite o título da postagem...">
 
         <label for="content">Conteúdo</label>
-        <textarea id="content" rows="5" placeholder="Digite o conteúdo da postagem..."></textarea>
+        <textarea required id="content" rows="5" placeholder="Digite o conteúdo da postagem..."></textarea>
 
         <button type="submit">Publicar Postagem</button>
       </form>
